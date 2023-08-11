@@ -1,11 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import RoomsScreen from './screens/RoomsScreen';
+
+import {
+  useFonts,
+  Poppins_700Bold as poppinsBold,
+  Poppins_600SemiBold as poppinsSemibold,
+  Poppins_500Medium as poppinsMedium,
+  Poppins_400Regular as poppinsRegular,
+} from '@expo-google-fonts/poppins';
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
+
+  if (!fontsLoaded && !fontError) return null;
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <RoomsScreen />
+      <StatusBar style='auto' />
     </View>
   );
 }
@@ -13,8 +26,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
