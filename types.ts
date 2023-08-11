@@ -6,3 +6,9 @@ export interface ChatItem {
   isNewMessage?: boolean;
   timestamp?: string;
 }
+
+export interface Message {
+  id: string;
+  textContent: string;
+  isReceived?: boolean;
+}

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import RoomsScreen from './screens/RoomsScreen';
-
+import ChatScreen from './screens/ChatScreen';
 import {
   useFonts,
   Poppins_700Bold as poppinsBold,
@@ -17,14 +17,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <RoomsScreen />
+      {/* <RoomsScreen /> */}
+      <ChatScreen />
       <StatusBar style='auto' />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
 });
