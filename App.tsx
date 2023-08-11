@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import RoomsScreen from './screens/RoomsScreen';
 import ChatScreen from './screens/ChatScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import {
   useFonts,
   Poppins_700Bold as poppinsBold,
@@ -10,6 +13,8 @@ import {
   Poppins_400Regular as poppinsRegular,
 } from '@expo-google-fonts/poppins';
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
 
@@ -17,8 +22,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <RoomsScreen /> */}
-      <ChatScreen />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Rooms' component={RoomsScreen} options={{ headerShown: false }} />
+          <Stack.Screen name='Chat' component={ChatScreen} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
       <StatusBar style='auto' />
     </View>
   );

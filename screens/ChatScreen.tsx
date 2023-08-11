@@ -5,10 +5,10 @@ import MessageInput from '../components/message/MessageInput';
 import { MESSAGES } from '../_data/chat';
 import MessageList from '../components/message/MessageList';
 
-const ChatScreen = () => {
+const ChatScreen = ({ navigation }: { navigation: any }) => {
   return (
     <View style={styles.container}>
-      <ChatScreenNavigation />
+      <ChatScreenNavigation navigation={navigation} />
       <MessageList data={MESSAGES} />
       <MessageInput />
     </View>

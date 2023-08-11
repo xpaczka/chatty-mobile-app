@@ -1,19 +1,21 @@
 import ActionButton from '../layout/ActionButton';
 import ActionButtonContainer from '../layout/ActionButtonContainer';
 import TopNavigation from '../layout/TopNavigation';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import PhoneIcon from '../../assets/icons/phone.svg';
 import VideoCallIcon from '../../assets/icons/videocall.svg';
 import CaretLeftIcon from '../../assets/icons/caret-left.svg';
 import { COLORS } from '../../constants';
 
-const ChatScreenNavigation = () => {
+const ChatScreenNavigation = ({ navigation }: { navigation: any }) => {
+  const pressHandler = () => navigation.navigate('Rooms');
+
   return (
     <TopNavigation>
       <View style={styles.userInfoContainer}>
-        <View>
+        <Pressable onPress={pressHandler}>
           <CaretLeftIcon height={32} width={32} />
-        </View>
+        </Pressable>
         <View style={styles.userImage}>
           <Image source={require('../../assets/the-widlarz-group.png')} height={44} width={44} />
         </View>

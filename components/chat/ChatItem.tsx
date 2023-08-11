@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import { COLORS, IMAGES } from '../../constants';
 import { FC } from 'react';
 import ChatItemImage from './ChatItemImage';
@@ -11,19 +11,25 @@ interface ChatListItemProps {
   imageName?: string;
   isNewMessage?: boolean;
   timestamp?: string;
+  navigation: any;
 }
 
-const ChatListItem: FC<ChatListItemProps> = ({ title, message, imageName, isNewMessage, timestamp }) => {
+const ChatListItem: FC<ChatListItemProps> = ({ title, message, imageName, isNewMessage, timestamp, navigation }) => {
   const imageSource = imageName
     ? IMAGES.find(img => img.name === imageName)?.image
     : require('../../assets/user-image.png');
 
+  const pressHandler = () => navigation.navigate('Chat');
+
   return (
-    <View style={[styles.chatItem, { backgroundColor: isNewMessage ? COLORS.plum500 : '#fff' }]}>
+    <Pressable
+      onPress={pressHandler}
+      style={[styles.chatItem, { backgroundColor: isNewMessage ? COLORS.plum500 : '#fff' }]}
+    >
       <ChatItemInfo isNewMessage={isNewMessage} timestamp={timestamp} />
       <ChatItemImage imageSource={imageSource} />
       <ChatItemTextContent title={title} message={message} isNewMessage={isNewMessage} />
-    </View>
+    </Pressable>
   );
 };
 

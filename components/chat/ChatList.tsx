@@ -5,9 +5,10 @@ import { FC } from 'react';
 
 interface ChatListProps {
   data: ChatItemProps[];
+  navigation: any;
 }
 
-const ChatList: FC<ChatListProps> = ({ data }) => {
+const ChatList: FC<ChatListProps> = ({ data, navigation }) => {
   return (
     <FlatList
       style={styles.chatContainer}
@@ -15,6 +16,7 @@ const ChatList: FC<ChatListProps> = ({ data }) => {
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <ChatItem
+          navigation={navigation}
           title={item.title}
           message={item.message}
           imageName={item.imageName}
