@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { client } from './api';
 import { ApolloProvider } from '@apollo/client';
+import { ComponentType } from 'react';
 
 import {
   useFonts,
@@ -19,8 +20,6 @@ const Stack = createNativeStackNavigator();
 
 // TODO: add loading behavior in every component using query
 // TODO: provide valid types for queried data
-// TODO: probide valid types for navigation and routes
-// TODO: fix keyboard covering the screen
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
@@ -32,8 +31,8 @@ export default function App() {
       <View style={styles.container}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name='Rooms' component={RoomsScreen} options={{ headerShown: false }} />
-            <Stack.Screen name='Chat' component={ChatScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='Rooms' component={RoomsScreen as ComponentType} options={{ headerShown: false }} />
+            <Stack.Screen name='Chat' component={ChatScreen as ComponentType} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style='auto' />

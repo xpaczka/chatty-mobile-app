@@ -1,13 +1,20 @@
-import React from 'react';
+import { FC } from 'react';
 import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import ChatScreenNavigation from '../components/navigation/ChatScreenNavigation';
 import MessageInput from '../components/message/MessageInput';
 import MessageList from '../components/message/MessageList';
-
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_CHAT } from '../api/handlers';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
+import { RouteProp } from '@react-navigation/native';
 
-const ChatScreen = ({ navigation, route }: { navigation: any; route: any }) => {
+interface ChatScreenProps {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Rooms'>;
+  route: RouteProp<RootStackParamList, 'Chat'>;
+}
+
+const ChatScreen: FC<ChatScreenProps> = ({ navigation, route }) => {
   const { id } = route.params;
   const { data } = useQuery(GET_SINGLE_CHAT, { variables: { id } });
 

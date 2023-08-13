@@ -7,9 +7,11 @@ import VideoCallIcon from '../../assets/icons/videocall.svg';
 import CaretLeftIcon from '../../assets/icons/caret-left.svg';
 import { COLORS } from '../../utils/constants';
 import { FC, useEffect, useState } from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types';
 
 interface ChatScreenNavigationProps {
-  navigation: any;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Rooms'>;
   title: string;
 }
 

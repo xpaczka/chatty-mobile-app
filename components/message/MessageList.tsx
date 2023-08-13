@@ -4,8 +4,13 @@ import Message from './Message';
 import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER } from '../../api/handlers';
 
+interface MessageListData {
+  id: string;
+  body: string;
+}
+
 interface MessageListProps {
-  data: any[];
+  data: MessageListData[];
 }
 
 const MessageList: FC<MessageListProps> = ({ data }) => {

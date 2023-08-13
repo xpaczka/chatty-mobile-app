@@ -6,10 +6,12 @@ import ChatItemInfo from './ChatItemInfo';
 import { useQuery } from '@apollo/client';
 import { GET_ROOM } from '../../api/handlers';
 import { calculateTimestamp } from '../../utils/helpers';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types';
 
 interface ChatListItemProps {
   id: string;
-  navigation: any;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Chat'>;
 }
 
 const ChatListItem: FC<ChatListItemProps> = ({ id, navigation }) => {

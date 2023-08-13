@@ -1,10 +1,16 @@
 import { FlatList, StyleSheet } from 'react-native';
 import ChatItem from './ChatItem';
 import { FC } from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types';
+
+interface ChatListData {
+  id: string;
+}
 
 interface ChatListProps {
-  data: any;
-  navigation: any;
+  data: ChatListData[];
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Chat'>;
 }
 
 const ChatList: FC<ChatListProps> = ({ data, navigation }) => {
