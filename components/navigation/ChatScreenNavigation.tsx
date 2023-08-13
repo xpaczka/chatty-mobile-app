@@ -33,8 +33,14 @@ const ChatScreenNavigation: FC<ChatScreenNavigationProps> = ({ navigation, title
         <Pressable onPress={pressHandler}>
           <CaretLeftIcon height={32} width={32} />
         </Pressable>
-        <View style={styles.userImage}>
-          <Image source={require('../../assets/the-widlarz-group.png')} height={44} width={44} />
+        <View style={styles.userImageContainer}>
+          <Image
+            source={require('../../assets/user-image.png')}
+            height={44}
+            width={44}
+            style={styles.userImage}
+            resizeMode='contain'
+          />
         </View>
         <View>
           <Text style={[styles.userName, { width: screenWidth - 238 }]} numberOfLines={1} ellipsizeMode='tail'>
@@ -57,7 +63,8 @@ const ChatScreenNavigation: FC<ChatScreenNavigationProps> = ({ navigation, title
 
 const styles = StyleSheet.create({
   userInfoContainer: { flexDirection: 'row', alignItems: 'center' },
-  userImage: { height: 44, width: 44, borderRadius: 100, overflow: 'hidden', marginRight: 12 },
+  userImageContainer: { height: 44, width: 44, borderRadius: 100, overflow: 'hidden', marginRight: 12 },
+  userImage: { width: '100%', height: '100%' },
   userName: { fontFamily: 'poppinsSemibold', fontSize: 14, color: COLORS.plum500 },
   userStatus: { fontSize: 14, color: '#fff' },
 });
