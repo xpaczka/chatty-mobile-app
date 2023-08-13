@@ -4,6 +4,8 @@ import RoomsScreen from './screens/RoomsScreen';
 import ChatScreen from './screens/ChatScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { client } from './api';
+import { ApolloProvider } from '@apollo/client';
 
 import {
   useFonts,
@@ -15,21 +17,26 @@ import {
 
 const Stack = createNativeStackNavigator();
 
+// TODO: add loading behavior in every component using query
+// TODO: provide valid types for queried data
+
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
 
   if (!fontsLoaded && !fontError) return null;
 
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name='Rooms' component={RoomsScreen} options={{ headerShown: false }} />
-          <Stack.Screen name='Chat' component={ChatScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      </NavigationContainer>
-      <StatusBar style='auto' />
-    </View>
+    <ApolloProvider client={client}>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name='Rooms' component={RoomsScreen} options={{ headerShown: false }} />
+            <Stack.Screen name='Chat' component={ChatScreen} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer>
+        <StatusBar style='auto' />
+      </View>
+    </ApolloProvider>
   );
 }
 

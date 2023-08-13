@@ -1,10 +1,9 @@
 import { FlatList, StyleSheet } from 'react-native';
 import ChatItem from './ChatItem';
-import { ChatItem as ChatItemProps } from '../../types';
 import { FC } from 'react';
 
 interface ChatListProps {
-  data: ChatItemProps[];
+  data: any;
   navigation: any;
 }
 
@@ -14,16 +13,7 @@ const ChatList: FC<ChatListProps> = ({ data, navigation }) => {
       style={styles.chatContainer}
       data={data}
       keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <ChatItem
-          navigation={navigation}
-          title={item.title}
-          message={item.message}
-          imageName={item.imageName}
-          isNewMessage={item.isNewMessage}
-          timestamp={item.timestamp}
-        />
-      )}
+      renderItem={({ item }) => <ChatItem navigation={navigation} id={item.id} />}
     />
   );
 };

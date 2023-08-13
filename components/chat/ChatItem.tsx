@@ -1,34 +1,27 @@
 import { StyleSheet, Pressable } from 'react-native';
-import { COLORS, IMAGES } from '../../constants';
 import { FC } from 'react';
 import ChatItemImage from './ChatItemImage';
-import ChatItemInfo from './ChatItemInfo';
 import ChatItemTextContent from './ChatItemTextContent';
 
+import { useQuery } from '@apollo/client';
+import { GET_ROOM } from '../../api/handlers';
+
 interface ChatListItemProps {
-  title: string;
-  message: string;
-  imageName?: string;
-  isNewMessage?: boolean;
-  timestamp?: string;
+  id: string;
   navigation: any;
 }
 
-const ChatListItem: FC<ChatListItemProps> = ({ title, message, imageName, isNewMessage, timestamp, navigation }) => {
-  const imageSource = imageName
-    ? IMAGES.find(img => img.name === imageName)?.image
-    : require('../../assets/user-image.png');
+const ChatListItem: FC<ChatListItemProps> = ({ id, navigation }) => {
+  const { data } = useQuery(GET_ROOM, { variables: { id } });
+
+  if (!data) return;
 
   const pressHandler = () => navigation.navigate('Chat');
 
   return (
-    <Pressable
-      onPress={pressHandler}
-      style={[styles.chatItem, { backgroundColor: isNewMessage ? COLORS.plum500 : '#fff' }]}
-    >
-      <ChatItemInfo isNewMessage={isNewMessage} timestamp={timestamp} />
-      <ChatItemImage imageSource={imageSource} />
-      <ChatItemTextContent title={title} message={message} isNewMessage={isNewMessage} />
+    <Pressable onPress={pressHandler} style={styles.chatItem}>
+      <ChatItemImage imageSource={require('../../assets/user-image.png')} />
+      <ChatItemTextContent title={data.room.name} message={data.room.messages[data.room.messages.length - 1].body} />
     </Pressable>
   );
 };
@@ -38,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 12,
-    backgroundColor: COLORS.plum500,
+    backgroundColor: '#fff',
     paddingVertical: 12,
     paddingHorizontal: 16,
     position: 'relative',

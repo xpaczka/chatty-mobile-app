@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { FC, useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { COLORS } from '../../constants';
 
 interface ChatItemTextContentProps {
@@ -8,11 +8,32 @@ interface ChatItemTextContentProps {
   isNewMessage?: boolean;
 }
 
+const screenDimension = Dimensions.get('screen');
+
 const ChatItemTextContent: FC<ChatItemTextContentProps> = ({ title, message, isNewMessage }) => {
+  const [screenWidth, setScreenWidth] = useState(screenDimension.width);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ screen }) => setScreenWidth(screen.width));
+    return () => subscription.remove();
+  }, []);
+
   return (
     <View style={styles.chatTextContent}>
-      <Text style={[styles.chatTitle, { color: isNewMessage ? '#fff' : COLORS.black }]}>{title}</Text>
-      <Text style={[styles.chatMessage, { color: isNewMessage ? '#fff' : COLORS.black }]}>{message}</Text>
+      <Text
+        style={[styles.chatTitle, { color: isNewMessage ? '#fff' : COLORS.black, width: screenWidth - 133 }]}
+        numberOfLines={1}
+        ellipsizeMode='tail'
+      >
+        {title}
+      </Text>
+      <Text
+        style={[styles.chatMessage, { color: isNewMessage ? '#fff' : COLORS.black, width: screenWidth - 133 }]}
+        numberOfLines={1}
+        ellipsizeMode='tail'
+      >
+        {message}
+      </Text>
     </View>
   );
 };
