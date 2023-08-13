@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../utils/constants';
 
 interface ChatItemTextContentProps {
   title: string;

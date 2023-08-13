@@ -1,6 +1,6 @@
 import { View, TextInput, StyleSheet } from 'react-native';
 import SendIcon from '../../assets/icons/send.svg';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../utils/constants';
 
 const MessageInput = () => {
   return (

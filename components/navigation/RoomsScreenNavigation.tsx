@@ -3,7 +3,7 @@ import TopNavigation from '../layout/TopNavigation';
 import ActionButton from '../layout/ActionButton';
 import SearchIcon from '../../assets/icons/search.svg';
 import RoomsIcon from '../../assets/icons/rooms.svg';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../utils/constants';
 import ActionButtonContainer from '../layout/ActionButtonContainer';
 
 const RoomsScreenNavigation = () => {

@@ -5,7 +5,7 @@ import ChatItemTextContent from './ChatItemTextContent';
 import ChatItemInfo from './ChatItemInfo';
 import { useQuery } from '@apollo/client';
 import { GET_ROOM } from '../../api/handlers';
-import { calculateTimestamp } from '../../helpers';
+import { calculateTimestamp } from '../../utils/helpers';
 
 interface ChatListItemProps {
   id: string;

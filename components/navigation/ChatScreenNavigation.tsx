@@ -5,7 +5,7 @@ import { View, Text, Image, StyleSheet, Pressable, Dimensions } from 'react-nati
 import PhoneIcon from '../../assets/icons/phone.svg';
 import VideoCallIcon from '../../assets/icons/videocall.svg';
 import CaretLeftIcon from '../../assets/icons/caret-left.svg';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../utils/constants';
 import { FC, useEffect, useState } from 'react';
 
 interface ChatScreenNavigationProps {

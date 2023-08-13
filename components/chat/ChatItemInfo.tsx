@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../../constants';
+import { COLORS } from '../../utils/constants';
 
 interface ChatItemInfoProps {
   isNewMessage?: boolean;
