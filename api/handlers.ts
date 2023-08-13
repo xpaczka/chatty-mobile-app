@@ -34,6 +34,7 @@ export const GET_SINGLE_CHAT = gql`
     room(id: $id) {
       name
       messages {
+        id
         body
         insertedAt
         user {

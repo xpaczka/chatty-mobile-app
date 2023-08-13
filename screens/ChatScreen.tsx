@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import ChatScreenNavigation from '../components/navigation/ChatScreenNavigation';
 import MessageInput from '../components/message/MessageInput';
 import MessageList from '../components/message/MessageList';
@@ -14,11 +14,11 @@ const ChatScreen = ({ navigation, route }: { navigation: any; route: any }) => {
   if (!data) return;
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior='padding'>
       <ChatScreenNavigation navigation={navigation} title={data.room.name} />
       <MessageList data={data.room.messages} />
       <MessageInput />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
