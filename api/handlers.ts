@@ -23,7 +23,31 @@ export const GET_ROOM = gql`
       name
       messages {
         body
+        insertedAt
       }
+    }
+  }
+`;
+
+export const GET_SINGLE_CHAT = gql`
+  query getSingleChat($id: ID!) {
+    room(id: $id) {
+      name
+      messages {
+        body
+        insertedAt
+        user {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const GET_CURRENT_USER = gql`
+  query getCurrentUser {
+    user {
+      id
     }
   }
 `;

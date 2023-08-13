@@ -19,6 +19,8 @@ const Stack = createNativeStackNavigator();
 
 // TODO: add loading behavior in every component using query
 // TODO: provide valid types for queried data
+// TODO: probide valid types for navigation and routes
+// TODO: fix keyboard covering the screen
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });

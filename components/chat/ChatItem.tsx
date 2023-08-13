@@ -2,9 +2,10 @@ import { StyleSheet, Pressable } from 'react-native';
 import { FC } from 'react';
 import ChatItemImage from './ChatItemImage';
 import ChatItemTextContent from './ChatItemTextContent';
-
+import ChatItemInfo from './ChatItemInfo';
 import { useQuery } from '@apollo/client';
 import { GET_ROOM } from '../../api/handlers';
+import { calculateTimestamp } from '../../helpers';
 
 interface ChatListItemProps {
   id: string;
@@ -16,11 +17,14 @@ const ChatListItem: FC<ChatListItemProps> = ({ id, navigation }) => {
 
   if (!data) return;
 
-  const pressHandler = () => navigation.navigate('Chat');
+  const timestamp = calculateTimestamp(data.room.messages[data.room.messages.length - 1].insertedAt);
+
+  const pressHandler = () => navigation.navigate('Chat', { id });
 
   return (
     <Pressable onPress={pressHandler} style={styles.chatItem}>
       <ChatItemImage imageSource={require('../../assets/user-image.png')} />
+      <ChatItemInfo timestamp={timestamp} />
       <ChatItemTextContent title={data.room.name} message={data.room.messages[data.room.messages.length - 1].body} />
     </Pressable>
   );

@@ -1,13 +1,28 @@
 import ActionButton from '../layout/ActionButton';
 import ActionButtonContainer from '../layout/ActionButtonContainer';
 import TopNavigation from '../layout/TopNavigation';
-import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, Dimensions } from 'react-native';
 import PhoneIcon from '../../assets/icons/phone.svg';
 import VideoCallIcon from '../../assets/icons/videocall.svg';
 import CaretLeftIcon from '../../assets/icons/caret-left.svg';
 import { COLORS } from '../../constants';
+import { FC, useEffect, useState } from 'react';
 
-const ChatScreenNavigation = ({ navigation }: { navigation: any }) => {
+interface ChatScreenNavigationProps {
+  navigation: any;
+  title: string;
+}
+
+const screenDimension = Dimensions.get('screen');
+
+const ChatScreenNavigation: FC<ChatScreenNavigationProps> = ({ navigation, title }) => {
+  const [screenWidth, setScreenWidth] = useState(screenDimension.width);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ screen }) => setScreenWidth(screen.width));
+    return () => subscription.remove();
+  }, []);
+
   const pressHandler = () => navigation.navigate('Rooms');
 
   return (
@@ -20,7 +35,9 @@ const ChatScreenNavigation = ({ navigation }: { navigation: any }) => {
           <Image source={require('../../assets/the-widlarz-group.png')} height={44} width={44} />
         </View>
         <View>
-          <Text style={styles.userName}>The Widlarz Group</Text>
+          <Text style={[styles.userName, { width: screenWidth - 238 }]} numberOfLines={1} ellipsizeMode='tail'>
+            {title}
+          </Text>
           <Text style={styles.userStatus}>Active now</Text>
         </View>
       </View>
