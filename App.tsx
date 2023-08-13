@@ -19,7 +19,6 @@ import {
 const Stack = createNativeStackNavigator();
 
 // TODO: add loading behavior in every component using query
-// TODO: provide valid types for queried data
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
