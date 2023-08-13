@@ -19,8 +19,9 @@ import {
 const Stack = createNativeStackNavigator();
 
 // TODO: add loading behavior in every component using query
+// TODO: add data refetching on every mutation
 
-export default function App() {
+const App = () => {
   const [fontsLoaded, fontError] = useFonts({ poppinsBold, poppinsSemibold, poppinsMedium, poppinsRegular });
 
   if (!fontsLoaded && !fontError) return null;
@@ -38,8 +39,10 @@ export default function App() {
       </View>
     </ApolloProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
 });
+
+export default App;

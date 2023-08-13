@@ -4,7 +4,7 @@ import ChatItemImage from './ChatItemImage';
 import ChatItemTextContent from './ChatItemTextContent';
 import ChatItemInfo from './ChatItemInfo';
 import { useQuery } from '@apollo/client';
-import { GET_ROOM } from '../../api/handlers';
+import { GET_ROOM } from '../../api/queries';
 import { calculateTimestamp } from '../../utils/helpers';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
@@ -19,7 +19,7 @@ const ChatListItem: FC<ChatListItemProps> = ({ id, navigation }) => {
 
   if (!data) return;
 
-  const timestamp = calculateTimestamp(data.room.messages[data.room.messages.length - 1].insertedAt);
+  const timestamp = calculateTimestamp(data.room.messages[0].insertedAt);
 
   const pressHandler = () => navigation.navigate('Chat', { id });
 
@@ -27,7 +27,7 @@ const ChatListItem: FC<ChatListItemProps> = ({ id, navigation }) => {
     <Pressable onPress={pressHandler} style={styles.chatItem}>
       <ChatItemImage imageSource={require('../../assets/user-image.png')} />
       <ChatItemInfo timestamp={timestamp} />
-      <ChatItemTextContent title={data.room.name} message={data.room.messages[data.room.messages.length - 1].body} />
+      <ChatItemTextContent title={data.room.name} message={data.room.messages[0].body} />
     </Pressable>
   );
 };

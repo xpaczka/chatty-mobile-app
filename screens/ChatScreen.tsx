@@ -4,7 +4,7 @@ import ChatScreenNavigation from '../components/navigation/ChatScreenNavigation'
 import MessageInput from '../components/message/MessageInput';
 import MessageList from '../components/message/MessageList';
 import { useQuery } from '@apollo/client';
-import { GET_SINGLE_CHAT } from '../api/handlers';
+import { GET_SINGLE_CHAT } from '../api/queries';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import { RouteProp } from '@react-navigation/native';
@@ -24,7 +24,7 @@ const ChatScreen: FC<ChatScreenProps> = ({ navigation, route }) => {
     <KeyboardAvoidingView style={styles.container} behavior='padding'>
       <ChatScreenNavigation navigation={navigation} title={data.room.name} />
       <MessageList data={data.room.messages} />
-      <MessageInput />
+      <MessageInput roomId={id} />
     </KeyboardAvoidingView>
   );
 };

@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import ChatList from '../components/chat/ChatList';
 import RoomsScreenNavigation from '../components/navigation/RoomsScreenNavigation';
 import { useQuery } from '@apollo/client';
-import { GET_ROOMS } from '../api/handlers';
+import { GET_ROOMS } from '../api/queries';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import { FC } from 'react';
